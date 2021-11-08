@@ -1,53 +1,61 @@
-import React, {Suspense} from 'react';
-import {createGlobalStyle} from 'styled-components';
-
+import React, { Component } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import Lottie from 'react-lottie';
+import Work from './assets/working-man.json';
+import background from './assets/background.json';
 // Import assets
 import 'modern-normalize/modern-normalize.css';
-import woff2 from '../public/fonts/open-sans-v16-latin-regular.woff2';
-import woff from '../public/fonts/open-sans-v16-latin-regular.woff';
-
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import 'react-pro-sidebar/dist/css/styles.css';
+import { Title, WordOrange } from './style';
 // Import Components
-import Container from './components/container';
-import Header from './components/header';
-import Image from './components/image';
-const Counter = React.lazy(() => import('./components/counter'));
+import Contact from './components/Contact';
+import Education from './components/Education';
+import MyHeader from './components/Header';
+import About from './components/About';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: [
+        <Title className='firstLine'>WEB </Title>,
+        <Title className='firstLine'>MOBILE </Title>,
+      ],
+      index: 0,
+    };
 
-// Global Style
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-display: fallback;
-    src: local('Open Sans Regular'), local('OpenSans-Regular'),
-        url('${woff2}') format('woff2'),
-        url('${woff}') format('woff');
+    this.timer = null;
   }
 
-  body {
-    font-family: Open Sans, Segoe UI, Tahoma, sans-serif !important;
-    background: #131415;
-    color: #fff;
-    padding: 1em;
-    line-height: 1.8em;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeSpeed;
-    word-wrap: break-word
-  }
-`;
+  updateIndex = () => {
+    let index = (this.state.index + 1) % this.state.title.length;
+    this.setState({ index });
+  };
 
-// Main page
-const App = () => {
-	return (
-		<Container>
-			<Header>Hello World <Image/></Header>
-			<p>Example site using Styled React Boilerplate!</p>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Counter/>
-			</Suspense>
-			<GlobalStyle/>
-		</Container>
-	);
-};
+  componentDidMount = () => {
+    this.timer = setInterval(this.updateIndex, 5000);
+  };
+  render() {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          minHeight: '100vh',
+          backgroundColor: '#1D1D1D',
+          flexDirection: 'column',
+        }}
+      >
+        <MyHeader />
+        <div
+          style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
+        >
+          <About />
+          <Education />
+          <Contact />
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;

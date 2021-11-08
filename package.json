@@ -52,9 +52,14 @@
     },
     "dependencies": {
         "core-js": "^3.6.5",
+        "i": "^0.3.7",
         "modern-normalize": "^1.0.0",
+        "npm": "^8.1.0",
         "react": "16.13.1",
         "react-dom": "16.13.1",
+        "react-icons": "^4.3.1",
+        "react-lottie": "^1.2.3",
+        "react-pro-sidebar": "^0.7.1",
         "styled-components": "^5.2.0"
     },
     "xo": {
