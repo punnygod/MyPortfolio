@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import ContactUs from '../assets/contact-us.json';
 import Lottie from 'react-lottie';
+import Work from '../../assets/working-man.json';
+import cssLogo from '../../assets/images/cssLogo.png';
+import gitLogo from '../../assets/images/gitLogo.png';
+import htmlLogo from '../../assets/images/htmlLogo.png';
+import reactLogo from '../../assets/images/reactLogo.png';
+import jsLogo from '../../assets/images/javascript.png';
 
 class MySkills extends Component {
   constructor(props) {
@@ -10,13 +15,15 @@ class MySkills extends Component {
     };
   }
 
-  componentDidMount = () => {};
+  componentDidMount = () => {
+    console.log(',ounte');
+  };
 
   render() {
     const gif = {
       loop: true,
       autoplay: true,
-      animationData: ContactUs,
+      animationData: Work,
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice',
       },
@@ -39,18 +46,23 @@ class MySkills extends Component {
             fontFamily: 'Montserrat, serif',
           }}
         >
-          Contact Me
+          My Skills
         </div>
         <div
           style={{
             display: 'flex',
             flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            width: '100%',
+            marginTop: 50,
+            marginLeft: '20px',
+            marginRight: '20px',
+            justifyContent: 'center',
+            color: '#fff',
           }}
         >
-          <div>
+          <div
+            className={this.state.animate ? 'slideBackwards' : ''}
+            style={{ width: '44%' }}
+          >
             <Lottie
               options={gif}
               height={400}
@@ -60,43 +72,22 @@ class MySkills extends Component {
             />
           </div>
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              width: '100%',
-            }}
+            className={this.state.animate ? 'slideForward' : ''}
+            style={{ width: '44%' }}
+            onAnimationEnd={() => this.setState({ animate: false })}
           >
-            <div className='contactItem'>
-              <img
-                src='https://img.icons8.com/fluency/48/000000/gmail-new.png'
-                style={{ width: '40px', height: '40px' }}
-              />
-            </div>
-            <div className='contactItem'>
-              {' '}
-              <img
-                src='https://img.icons8.com/office/80/000000/whatsapp--v1.png'
-                style={{ width: '40px', height: '40px' }}
-              />
-            </div>
-            {/* <div className='contactItem'>
-              {' '}
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='40'
-                height='40'
-                viewBox='0 0 24 24'
-              >
-                <path d='M0 0v24h24v-24h-24zm8 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.397-2.586 7-2.777 7 2.476v6.759z' />
-              </svg>
-            </div>
-            <div className='contactItem'>
-              <img
-                src='https://img.icons8.com/dusk/64/000000/apple-phone.png'
-                style={{ width: '40px', height: '40px' }}
-              />
+            {/* <div
+              style={{
+                fontSize: '32px',
+                fontWeight: 600,
+                color: '#fff',
+                lineHeight: '40px',
+                fontFamily: 'Montserrat, serif',
+              }}
+            >
+              Started Working on Frontend Technologies and App development
             </div> */}
+            <img src={cssLogo} style={{ width: '20px', height: '20px' }} />
           </div>
         </div>
       </div>

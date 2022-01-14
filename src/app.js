@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Education from './components/Education';
 import MyHeader from './components/Header';
 import About from './components/About';
+import MySkills from './components/MySkills';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +52,7 @@ class App extends Component {
         >
           <About />
           <Education />
+          <MySkills />
           <Contact />
         </div>
       </div>
